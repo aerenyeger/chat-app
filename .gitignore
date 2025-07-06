@@ -1,6 +1,5 @@
+bd_chat_app/node_modules/
+bd_chat_app/.env
 
-**/node_modules/
-
-**/.env
-
-**/package-lock.json
+chat_app/.env
+chat_app/node_modules

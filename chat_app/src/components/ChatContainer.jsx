@@ -22,9 +22,11 @@ const ChatContainer = () => {
       <ChatHeader/>
       <div>
         {messages.map((message)=>(
-          <div key={message._id}  >
+          <div key={message._id}  style={{display:"flex" ,justifyContent: message.senderId===userSelected._id ? 'flex-start' : 'flex-end',}}>
             <div>
-              {message.text && <p>{message.text}</p>}
+              {message.text && <p 
+              style={{backgroundColor:message.senderId===userSelected._id?"darkgreen":"darkblue",border:"1px solid black", padding:"4px" }}
+              >{message.text}</p>}
             </div>
         </div>
         ))}
