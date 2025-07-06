@@ -14,7 +14,7 @@ export const useChatstore=create((set,get)=>({
     getUsers:async()=>{
         try {
             set({userLoading:true})
-            const res=await axiosInstance.get("http://localhost:3000/api/messages/users",{withCredentials:true})//cedential
+            const res=await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/api/messages/users`,{withCredentials:true})//cedential
             set({users:res.data})
         } catch (error) {
             console.log("error while getUsers")
@@ -28,7 +28,7 @@ export const useChatstore=create((set,get)=>({
     fetchMessages:async(userId)=>{
         set({messageLoading:true})
         try {
-            const res=await axiosInstance.get(`http://localhost:3000/api/messages/${userId}`,{withCredentials:true})  //pass the credentials also
+            const res=await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/api/messages/${userId}`,{withCredentials:true})  //pass the credentials also
             set({messages:res.data})
         } catch (error) {
             console.log("error while fetchMessages")

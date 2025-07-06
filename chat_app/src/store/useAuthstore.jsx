@@ -9,13 +9,13 @@ const BASE_URL=import.meta.env.MODE==="development"?"http://localhost:3000" : "/
 export const useAuthstore = create((set, get) => ({
     userdetails: null,
     loggedin: false,
-    onlineusers: [],
+    onlineUsers: [],
     socket: null,
 
     // checking whether the user has json web token 
     checkAuth: async () => {
         try {
-            const res = await axios.get("http://localhost:3000/api/auth/check",{
+            const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/check`,{
                 withCredentials:true
             })
             set({ userdetails: res.data })
@@ -29,7 +29,7 @@ export const useAuthstore = create((set, get) => ({
 
     signup: async (data) => {
         try {
-            const res = await axios.post("http://localhost:3000/api/auth/signup", 
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/signup`, 
                      data,
                 {withCredentials:true}
             )
@@ -47,7 +47,7 @@ export const useAuthstore = create((set, get) => ({
 
     login: async (data) => {
         try {
-            const res = await axios.post("http://localhost:3000/api/auth/login",data,{withCredentials:true})
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,data,{withCredentials:true})
             if (res.status === 200) {
                 set({ userdetails: res.data })
                 toast.success(
@@ -65,7 +65,7 @@ export const useAuthstore = create((set, get) => ({
     //cookie remove
     logout: async () => {
         try {
-            const res = await axios.post("http://localhost:3000/api/auth/logout",{},{withCredentials:true})
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/logout`,{},{withCredentials:true})
             if (res.status === 200) {
                 console.log("logout successfull")
                 get().disconnectSocket()
