@@ -3,9 +3,8 @@ import axios from "axios"
 import toast from "react-hot-toast"
 import { axiosInstance } from "../lib/axios"
 import {io} from "socket.io-client"
-
+import { useNavigate } from "react-router-dom"
 const BASE_URL=import.meta.env.MODE==="development"?"http://localhost:3000" : "/"
-
 export const useAuthstore = create((set, get) => ({
     userdetails: null,
     loggedin: false,
@@ -37,11 +36,13 @@ export const useAuthstore = create((set, get) => ({
                 set({ userdetails: res.data })
                 toast.success("signup successfull")
                 get().connectSocket()
+                return true
             }
         } catch (error) {
             console.log("error while signingup")
             toast.error("error in signup")
             console.log(error.message)
+            return false
         }
     },
 
@@ -51,14 +52,17 @@ export const useAuthstore = create((set, get) => ({
             if (res.status === 200) {
                 set({ userdetails: res.data })
                 toast.success(
-                    "entry created successfully"
+                    "Login successfull"
                 )
                 get().connectSocket()
                 console.log("here")
+                return true
             }
         } catch (error) {
             console.log("error while login")
+            toast.error("login data not correct")
             console.log(error.message)
+            return false
         }
     },
 

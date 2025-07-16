@@ -6,9 +6,9 @@ const ChatHeader = () => {
   const { onlineUsers } = useAuthstore();
   const{userSelected,setSelectedUser}=useChatstore()
   return (
-    <div>
+    <div className='text-white ml-140 text-2xl'>
         {userSelected.username}
-        <button onClick={()=>{setSelectedUser(null)}}><X/>
+        <button className="mt-5 border border-white ml-2"onClick={()=>{setSelectedUser(null)}}><X/>
         </button>
     </div>
   );

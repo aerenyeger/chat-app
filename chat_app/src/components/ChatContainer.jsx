@@ -13,19 +13,22 @@ const ChatContainer = () => {
     subscribeToMessages();
     return()=>{unsubscribeToMessages()}
   },[userSelected._id,fetchMessages,subscribeToMessages,unsubscribeToMessages])
+  
+  useEffect(()=>{
+    messageEndRef.current?.scrollIntoView({behaviour:'smooth'})
+  },[messages])
 
- 
 
   if(messageLoading) return(<div>messageLoading</div>)
   return (
-    <div>
+    <div className='flex flex-col h-screen'>
       <ChatHeader/>
-      <div>
+      <div className='flex-1 overflow-y-auto px-4 py-2'>
         {messages.map((message)=>(
           <div key={message._id}  style={{display:"flex" ,justifyContent: message.senderId===userSelected._id ? 'flex-start' : 'flex-end',}}>
             <div>
-              {message.text && <p 
-              style={{backgroundColor:message.senderId===userSelected._id?"darkgreen":"darkblue",border:"1px solid black", padding:"4px" }}
+              {message.text && <p className={`${message.senderId===userSelected._id?"bg-green-400":"bg-green-500"} p-1 mb-3 rounded-md mr-2`}
+              
               >{message.text}</p>}
             </div>
         </div>

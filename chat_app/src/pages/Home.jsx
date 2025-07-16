@@ -7,9 +7,20 @@ import MessageInput from '../components/MessageInput'
 const Home = () => {
   const{userSelected}=useChatstore()
   return (
-    <div>
-      <Sidebar/>
-      {userSelected ? <><ChatContainer/><MessageInput/></>:("no chat selected")}
+    <div className='flex flex-row '>
+      <div>
+        <Sidebar/>
+      </div>
+      {userSelected ? <>
+      <div className='flex flex-col w-full bg-[url("/bgImg.png")] bg-cover h-screen'>
+        <ChatContainer/>
+      <MessageInput/>
+      </div>
+      </>:
+      <div className='flex flex-col w-full bg-[url("/bgImg.png")] bg-cover h-screen text-white text-2xl items-center pt-80 font-bold pl-30'>
+        <h1>No Chat Selected.</h1>
+        <h1>Select a Use to continue Chatting</h1>
+        </div >}
     </div>
   )
 }
