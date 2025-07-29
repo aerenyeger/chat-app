@@ -4,7 +4,7 @@ import toast from "react-hot-toast"
 import { axiosInstance } from "../lib/axios"
 import {io} from "socket.io-client"
 import { useNavigate } from "react-router-dom"
-const BASE_URL=import.meta.env.MODE==="development"?"http://localhost:3000" : "/"
+const BASE_URL=import.meta.env.MODE==="development"?"http://localhost:3000" : "https://chat-app-2itv.onrender.com"
 export const useAuthstore = create((set, get) => ({
     userdetails: null,
     loggedin: false,
